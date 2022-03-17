@@ -4,9 +4,9 @@ import pandas as pd
 import numpy as np
 import pickle
 
-Predictor1 = pickle.load(open('Downloads/NaiveBayesPrediction1.pkl', 'rb'))
-Predictor2 = pickle.load(open('Downloads/NaiveBayesPrediction2.pkl', 'rb'))
-Predictor3 = pickle.load(open('Downloads/NaiveBayesPrediction3.pkl', 'rb'))
+Predictor1 = pickle.load(open('C:\Users\ottev\Downloads\NaiveBayesPrediction1.pkl', 'rb'))
+Predictor2 = pickle.load(open('C:\Users\ottev\Downloads\NaiveBayesPrediction2.pkl', 'rb'))
+Predictor3 = pickle.load(open('C:\Users\ottev\Downloads\NaiveBayesPrediction3.pkl', 'rb'))
 
 st.markdown("""
 # Blackjack Predictor
