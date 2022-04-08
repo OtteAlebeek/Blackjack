@@ -1,12 +1,11 @@
-from select import select
 import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
 
-Predictor1 = pickle.load(open('NaiveBayesPrediction1.pkl', 'rb'))
-Predictor2 = pickle.load(open('NaiveBayesPrediction2.pkl', 'rb'))
-Predictor3 = pickle.load(open('NaiveBayesPrediction3.pkl', 'rb'))
+Predictor1 = pickle.load(open('Downloads/KNNPrediction1.pkl', 'rb'))
+Predictor2 = pickle.load(open('Downloads/KNNPrediction2.pkl', 'rb'))
+Predictor3 = pickle.load(open('Downloads/KNNPrediction3.pkl', 'rb'))
 
 st.markdown("""
 # Blackjack Predictor
@@ -43,10 +42,10 @@ if selected_page == 'First':
     """)
  
     def user_input_features():
-     card1 = st.text_input("The first card you get", 0)
-     card2 = st.text_input("The second card you get", 0)
-     dealcard1 = st.text_input("The first card the dealer get", 0)
-     ply2cardsum = st.text_input("Sum of the first 2 cards you get", 0)
+     card1 = st.number_input("The first card you get", min_value=1, max_value=11)
+     card2 = st.number_input("The second card you get", min_value=1, max_value=11)
+     dealcard1 = st.number_input("The first card the dealer get", min_value=1, max_value=11)
+     ply2cardsum = st.number_input("The sum of the first 2 cards", card1+card2, max_value=21)
      data = {'The first card you get': card1,
             'The second card you get': card2,
             'The first card the dealer get': dealcard1,
@@ -59,8 +58,8 @@ if selected_page == 'First':
 
     if st.button('Submit'):
         Predictor1_load = Predictor1.predict(df)
-        data = {'Blackjack load': Predictor1_load}
-        features = pd.DataFrame(data, index=['Values $'])
+        data = {'What is the next step?': Predictor1_load}
+        features = pd.DataFrame(data, index=['Value'])
         st.write(features)
 
 elif selected_page == 'Second':
@@ -69,16 +68,15 @@ elif selected_page == 'Second':
     # Second prediction
     On this page you will get to know if you need to hit or stand after receiving your first 3 cards.
 
-
     Fill in the filters and see what the best strategy for your next step is
     """)
  
     def user_input_features():
-     card1 = st.text_input("The first card you get", 0)
-     card2 = st.text_input("The second card you get", 0)
-     card3 = st.text_input("The third card you get", 0)
-     dealcard1 = st.text_input("The first card the dealer get", 0)
-     ply3cardsum = st.text_input("Sum of the first 2 cards you get", 0)
+     card1 = st.number_input("The first card you get", min_value=1, max_value=11)
+     card2 = st.number_input("The second card you get", min_value=1, max_value=11)
+     card3 = st.number_input("The third card you get", min_value=1, max_value=11)
+     dealcard1 = st.number_input("The first card the dealer get", min_value=1, max_value=11)
+     ply3cardsum = st.number_input("Sum of the first 2 cards you get",  card1+card2+card3, max_value=21)
      data = {'The first card you get': card1,
             'The second card you get': card2,
             'The third card you get': card3,
@@ -92,26 +90,27 @@ elif selected_page == 'Second':
 
     if st.button('Submit'):
         Predictor2_load = Predictor2.predict(df)
-        data = {'Blackjack load': Predictor2_load}
-        features = pd.DataFrame(data, index=['Values $'])
+        data = {'What is the next step?': Predictor2_load}
+        features = pd.DataFrame(data, index=['Value'])
         st.write(features)
+
+
 elif selected_page == 'Third':
 
     st.write("""
     # Third prediction
     On this page you will get to know if you need to hit or stand after receiving your first 4 cards.
 
-
     Fill in the filters and see what the best strategy for your next step is
     """)
 
     def user_input_features():
-        card1 = st.text_input("The first card you get", 0)
-        card2 = st.text_input("The second card you get", 0)
-        card3 = st.text_input("The third card you get", 0)
-        card4 = st.text_input("The fourth card you get", 0)
-        dealcard1 = st.text_input("The first card the dealer get", 0)
-        ply4cardsum = st.text_input("Sum of the first 2 cards you get", 0)
+        card1 = st.number_input("The first card you get", min_value=1, max_value=11)
+        card2 = st.number_input("The second card you get", min_value=1, max_value=11)
+        card3 = st.number_input("The third card you get", min_value=1, max_value=11)
+        card4 = st.number_input("The fourth card you get", min_value=1, max_value=11)
+        dealcard1 = st.number_input("The first card the dealer get", min_value=1, max_value=11)
+        ply4cardsum = st.number_input("Sum of the first 2 cards you get", card1+card2+card3+card4, max_value=21)
         data = {'The first card you get': card1,
             'The second card you get': card2,
             'The third card you get': card3,
@@ -126,6 +125,6 @@ elif selected_page == 'Third':
 
     if st.button('Submit'):
         Predictor3_load = Predictor3.predict(df)
-        data = {'Blackjack load': Predictor3_load}
-        features = pd.DataFrame(data, index=['Values $'])
+        data = {'What is the next step?': Predictor3_load}
+        features = pd.DataFrame(data, index=['Value'])
         st.write(features)
