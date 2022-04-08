@@ -3,9 +3,9 @@ import pandas as pd
 import numpy as np
 import pickle
 
-Predictor1 = pickle.load(open('C:\Users\ottev\Downloads\KNNPrediction1.pkl', 'rb'))
-Predictor2 = pickle.load(open('C:\Users\ottev\Downloads\KNNPrediction2.pkl', 'rb'))
-Predictor3 = pickle.load(open('C:\Users\ottev\Downloads\KNNPrediction3.pkl', 'rb'))
+Predictor1 = pickle.load(open('DTPrediction1.pkl', 'rb'))
+Predictor2 = pickle.load(open('DTPrediction2.pkl', 'rb'))
+Predictor3 = pickle.load(open('DTPrediction3.pkl', 'rb'))
 
 st.markdown("""
 # Blackjack Predictor
